@@ -1,0 +1,25 @@
+\renewcommand*{\aclabelfont}[1]{\acsfont{#1}} % Чтобы сокращения были не жирным шрифтом!
+
+%\newcommand{\abbstart}{\acroextra{\hspace{1.0cm}}} % Начало строки - отступ
+\newcommand{\abbstart}{} % Начало строки пустое (ГОСТ 7.32-2017)
+
+%\newcommand{\abbdash}{\acroextra{\hspace{-3.5mm}--} } % Между сокращением и расшифровкой - тире (ГОСТ 7.32-2017)
+\newcommand{\abbdash}{\acroextra{\hspace{-0.5mm}--} } % Между сокращением и расшифровкой - тире (ГОСТ 7.32-2017)
+%\newcommand{\abbdash}{} % Между сокращением и расшифровкой - пусто
+
+%\newcommand{\abbendl}{\acroextra{;}} % Окончание строки - знак ";"
+\newcommand{\abbendl}{} % Окончание строки пустое (ГОСТ 7.32-2017)
+
+\begin{acronym}[\hspace{-0.2cm}] % В квадратных скобках указывается самое длинное сокращение для выравнивания!КК-РКФКБ
+\acro{иул}[\abbstart ИУЛ]{\abbdash информационно-удостоверяющий лист\abbendl}
+\acro{окр}[\abbstart ОКР]{\abbdash опытно-конструкторская работа\abbendl}
+\acro{ос}[\abbstart ОС]{\abbdash операционная система\abbendl}
+\acro{эвм}[\abbstart ЭВМ]{\abbdash электронная вычислительная машина\abbendl}
+
+\vspace{5mm}
+
+\acro{ide}[\abbstart IDE]{\abbdash интегрированная среда разработки, англ.~integrated development environment\abbendl}
+\acro{nan}[\abbstart NaN]{\abbdash неопределенный результат (состояние числа с~плавающей точкой), англ.~not a number\abbendl}
+\acro{tcp/ip}[\abbstart TCP/IP]{\abbdash сетевой протокол передачи информации, англ.~transmission control protocol/internet protocol\abbendl}
+\acro{utc}[\abbstart UTC]{\abbdash всемирное координированное время, англ.~coordinated universal time\abbendl}
+\end{acronym}

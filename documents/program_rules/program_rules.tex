@@ -1,0 +1,98 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% \file       program_rules.tex
+% \brief      Описание языка (правила программирования)
+% \date       28.03.23 - создан
+% \author     Соболев А.А.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\documentclass[languagedescription]{../espd}
+\documentclass[additional]{../espd}
+\input{../preamble} % Преамбула
+\title{РУКОВОДЯЩИЕ УКАЗАНИЯ\\ПО ПРОГРАММИРОВАНИЮ И ОФОРМЛЕНИЮ\\ТЕКСТОВ ИСХОДНЫХ КОДОВ\\ НА ЯЗЫКЕ С++}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Переопределим шрифт на жирный --> не по ГОСТ, но лучше смотрится в цифровом виде
+\renewcommand{\section}[1]{
+	%  \parskip3mm  		
+	\ifx&#1&
+	\ClassError
+	{espd}
+	{Empty section title}
+	{According to GOST 19.106-78, section title can not be empty}
+	\fi
+	\refstepcounter{section}
+	\writesection{\textbf{\numsection~#1}}  
+	\addcontentsline{toc}{section}{\numsection~#1}
+}
+\renewcommand{\subsection}[1]{
+	\ifx&#1&
+	\ClassError
+	{espd}
+	{Empty subsection title}
+	{According to GOST 19.106-78, subsection title can not be empty}
+	\fi
+	\refstepcounter{subsection}
+	\writesubsection{\textbf{\numsubsection~#1}}
+	\addcontentsline{toc}{subsection}{\numsubsection~#1}
+}
+\renewcommand{\subsubsection}[1]{  
+	%  \parskip1mm
+	\refstepcounter{subsubsection}
+	\writeparagraph{\textbf{\numsubsubsection~#1}}
+	\ifx&#1&\else
+	\addcontentsline{toc}{subsubsection}{\numsubsubsection~#1}
+	\fi  	
+}
+\renewcommand{\paragraph}[1]{
+	\refstepcounter{paragraph}
+	\writeparagraph{\textbf{\numparagraph~#1}}
+	\ifx&#1&\else
+	\addcontentsline{toc}{paragraph}{\numparagraph~#1}
+	\fi
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+\graphicspath{{../images/}} % Директория для картинок в тексте
+%\graphicspath{./images/} % Директория для картинок в тексте
+\begin{document} % Начало документа	
+\clubpenalty=10000 % Это костыль против
+\widowpenalty=10000 % "висячих" строк
+\righthyphenmin=200 % Избавляемся
+{\sloppy % от переносов слов
+\makelisttitlesimple{} % Титульный лист
+{
+	\cleardoublepage
+	\phantomsection
+	\pdfbookmark[1]{Аннотация}{annotation}
+	\input{src/аннотация.tex}
+}
+{
+	\cleardoublepage
+	\phantomsection
+	\pdfbookmark[1]{\wordcontents}{toc}
+	\begin{spacing}{0.1}
+		\tableofcontents % Содержание
+	\end{spacing}
+}
+%
+% Дальше пошли разделы
+\input{src/введение.tex} 
+\input{src/общие_сведения.tex} 
+\input{src/элементы_языка.tex} 
+\input{src/стиль_программирования.tex} 		
+
+%
+% Перечень сокращений
+\cleardoublepage
+\phantomsection
+\input{src/аббревиатуры.tex}
+%
+%% Перечень литературы
+\cleardoublepage
+\phantomsection
+\bibliography{../bibliography,../bibliography_gost19}
+%
+% Лист регистрации изменений по ЕСПД
+%\registrationlistESPD 
+}
+\end{document}
